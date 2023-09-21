@@ -11,3 +11,8 @@ This Kaggle Competition challenges Kagglers to develop algorithms that use a bro
 
 ## Evaluation
 Submissions are evaluated on the RMSLE between their predicted prices and the actual data. The target variable, called price_doc in the training set, is the sale price of each property.
+
+## Links
+Competition: https://www.kaggle.com/competitions/sberbank-russian-housing-market/overview
+
+Dataset: https://www.kaggle.com/competitions/sberbank-russian-housing-market/data
