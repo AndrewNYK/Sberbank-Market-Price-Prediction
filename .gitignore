@@ -5,3 +5,5 @@
 *.cubin
 *.fatbin
 *venv*
+
+.ipynb_checkpoints/
