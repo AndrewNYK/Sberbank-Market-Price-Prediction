@@ -6,3 +6,4 @@ seaborn
 shap
 lightgbm 
 hyperopt
+xgboost
