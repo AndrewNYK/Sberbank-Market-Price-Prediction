@@ -406,24 +406,6 @@ numeric_cols = [
 ]
 
 
-xgb_params = {
-    "n_estimators": 500,
-    "device": "cuda",
-    # 'random_state': 24,
-    "objective": "reg:squarederror",
-    "eval_metric": "rmsle",
-    "enable_categorical": True,
-    "early_stopping_rounds": 50,
-    "colsample_bytree": 0.8,
-    "eta": 0.05,
-    "gamma": 8.084029345968737,
-    "max_depth": 8,
-    "min_child_weight": 2.0,
-    "reg_alpha": 93.0,
-    "reg_lambda": 0.8685796539747039,
-}
-
-
 def get_na_cols(df):
     return df.columns[df.isna().any()].tolist()
 
@@ -459,7 +441,7 @@ def replace_nan_with_mean(**kwargs):
         if (
             c not in useless_cols
             and df[c].dtype.name != "category"
-            and c not in ["floor", "max_floor"]
+            # and c not in ["floor", "max_floor"]
         ):
             if train_df is None:
                 df[c] = df[c].fillna((df[c].mean()))
@@ -566,3 +548,90 @@ def _one_hot_transform(df, one_hot_encoder):
     encoded_cols = list(one_hot_encoder.get_feature_names_out(one_hot_cols))
     df[encoded_cols] = one_hot_encoder.transform(df[one_hot_cols])
     df.drop(one_hot_cols, axis=1, inplace=True)
+
+
+# K folds Functions
+from tqdm import tqdm
+from sklearn.model_selection import KFold
+from sklearn.metrics import mean_squared_error
+import shap
+
+
+def cal_mean_errors(train_df, models, features=None):
+    cv = KFold(n_splits=5, shuffle=True)
+    rmsles = []
+    most_important_features = []
+
+    # get one hot encoder
+    one_hot_encoder = OneHotEncoder(sparse_output=False, handle_unknown="ignore")
+    one_hot_encoder.fit(train_df[one_hot_cols])
+
+    # get ordinal encoder
+    # ordinal_encoder = OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=np.nan)
+    # ordinal_encoder.fit(train_df[ordinal_cols])
+
+    # processed_df, _, _, _ = process_train(train_df, one_hot_encoder=one_hot_encoder)
+    train_df = train_df.drop(train_df[train_df["build_year"] > 2019].id)
+    train_df.reset_index(drop=True, inplace=True)
+
+    for fold, (train_idx, test_idx) in tqdm(enumerate(cv.split(train_df))):
+        rmsles_ = []
+        most_important_features_ = []
+
+        # Splitting data
+        tmp_df = train_df.iloc[train_idx]
+        processed_df, ordinal_encoder, target_encoder, one_hot_encoder = process_train(
+            tmp_df, one_hot_encoder=one_hot_encoder
+        )  # , ordinal_encoder=ordinal_encoder)
+        X_train = processed_df.drop(["price_doc"], axis=1)
+        y_train = processed_df["price_doc"]
+
+        X_test = train_df.iloc[test_idx]
+        y_test = X_test["price_doc"]
+        X_test = X_test.drop(["price_doc"], axis=1)
+        X_test = process_test(
+            X_test,
+            X_train,
+            one_hot_encoder=one_hot_encoder,
+            ordinal_encoder=ordinal_encoder,
+        )
+
+        # Select features is specified
+        if features is not None:
+            X_train = X_train[features]
+            X_test = X_test[features]
+
+        for model in models:
+            evaluation = [(X_test, y_test)]
+            model.fit(X_train, y_train, eval_set=evaluation, verbose=False)
+            pred = model.predict(X_test)
+            rmsles_.append(mean_squared_error(y_test, pred, squared=False))
+            explainer = shap.TreeExplainer(model)
+            shap_values = explainer.shap_values(X_test)
+
+            # Average across samples
+            most_important_features_.append(np.abs(shap_values).mean(axis=0))
+
+        rmsles.append(rmsles_)
+        most_important_features.append(most_important_features_)
+
+    # Average across folds
+    average_feature_importance = np.array(most_important_features).mean(axis=0)
+    important_features = []
+
+    for average_val in average_feature_importance:
+        feature_names = X_test.columns
+        shap_importance = pd.DataFrame(
+            list(zip(feature_names, average_val)),
+            columns=["col_name", "feature_importance_vals"],
+        )
+        shap_importance.sort_values(
+            by=["feature_importance_vals"], ascending=False, inplace=True
+        )
+
+        important_features.append(shap_importance)
+
+    # Mean rmsles
+    rmsles = np.array(rmsles).mean(axis=0)
+
+    return rmsles, important_features
