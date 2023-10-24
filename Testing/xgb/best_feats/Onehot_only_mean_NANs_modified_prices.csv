@@ -1,0 +1,451 @@
+col_name,feature_importance_vals
+full_sq,1476433.9
+cafe_count_5000_price_2500,307972.25
+num_room,287555.97
+cafe_count_5000_price_high,191377.39
+cafe_count_3000,160847.25
+cafe_count_2000,155492.58
+floor,123069.05
+life_sq,121646.71
+state,117254.625
+build_year,100598.04
+sport_count_3000,98321.36
+kitch_sq,85161.07
+cafe_count_3000_price_2500,78264.21
+ttk_km,74734.21
+max_floor,56708.15
+metro_min_avto,56141.707
+material_nan,55071.113
+public_healthcare_km,53691.875
+cafe_count_2000_price_2500,52122.586
+green_zone_km,42619.742
+swim_pool_km,39879.1
+railroad_km,38135.137
+product_type_Investment,37305.867
+metro_min_walk,37048.67
+cafe_count_1000,36151.887
+office_sqm_5000,35142.54
+nuclear_reactor_km,33373.29
+additional_education_km,31234.246
+cafe_count_1500,30812.074
+oil_chemistry_km,30551.824
+kindergarten_km,30238.848
+detention_facility_km,27952.418
+prom_part_1000,27423.84
+metro_km_avto,27144.512
+prom_part_3000,26918.281
+indust_part,25929.307
+railroad_station_avto_km,24729.688
+theater_km,24453.707
+preschool_km,24256.195
+cafe_count_1500_price_500,24249.713
+trc_count_1500,23844.56
+workplaces_km,23289.324
+cafe_count_5000_na_price,22878.77
+sport_objects_raion,21966.021
+cafe_count_5000_price_4000,21766.705
+church_count_5000,21405.68
+ts_km,21256.688
+cafe_count_2000_price_1000,20633.727
+fitness_km,20534.18
+cafe_count_5000,20460.596
+mosque_km,20406.85
+sadovoe_km,20023.686
+green_part_1500,18569.51
+cafe_count_1500_price_1000,18197.783
+cafe_count_2000_price_500,17767.09
+public_transport_station_km,17541.744
+cafe_count_1000_price_2500,17048.023
+big_road1_km,16696.258
+hospice_morgue_km,16542.004
+green_part_5000,16519.68
+cafe_count_2000_price_1500,16306.203
+zd_vokzaly_avto_km,16188.469
+product_type_OwnerOccupier,16120.814
+school_education_centers_raion,15648.205
+prom_part_5000,15567.701
+cafe_count_3000_price_1500,15557.982
+radiation_km,15419.5
+kremlin_km,15207.714
+power_transmission_line_km,15115.344
+hospital_beds_raion,15027.011
+office_km,14949.748
+material_2.0,14757.006
+shopping_centers_raion,14680.115
+cafe_sum_5000_max_price_avg,14546.352
+cafe_count_1500_price_2500,14519.752
+park_km,14217.092
+bulvar_ring_km,14112.672
+cafe_sum_1500_max_price_avg,13699.815
+cafe_count_3000_price_4000,13387.352
+industrial_km,13277.814
+office_count_3000,13243.318
+cafe_count_5000_price_1500,13074.719
+ekder_male,12975.503
+prom_part_500,12945.083
+trc_count_2000,12885.779
+green_part_500,12803.523
+cafe_avg_price_5000,12567.436
+green_part_1000,12394.352
+catering_km,12394.003
+church_synagogue_km,12074.231
+exhibition_km,11927.117
+basketball_km,11900.65
+cafe_sum_5000_min_price_avg,11824.209
+cafe_sum_1500_min_price_avg,11797.374
+school_km,11730.784
+big_road2_km,11727.24
+green_zone_part,11700.259
+big_church_count_3000,11649.0625
+mkad_km,11644.032
+railroad_station_walk_km,11440.018
+green_part_2000,11409.499
+office_count_5000,11403.445
+university_km,11099.153
+water_km,11039.296
+trc_sqm_3000,11021.263
+trc_count_3000,10920.6045
+cafe_count_1500_price_1500,10831.037
+prom_part_1500,10785.708
+trc_sqm_1500,10768.084
+material_4.0,10424.186
+cafe_sum_2000_min_price_avg,10419.279
+water_treatment_km,10153.767
+ice_rink_km,9965.976
+build_count_monolith,9892.632
+bus_terminal_avto_km,9863.136
+thermal_power_plant_km,9806.468
+metro_km_walk,9537.652
+shopping_centers_km,9004.428
+public_transport_station_min_walk,8930.511
+cafe_count_3000_price_1000,8906.855
+cemetery_km,8849.604
+cafe_count_3000_price_500,8779.568
+prom_part_2000,8647.837
+market_shop_km,8635.105
+big_market_km,8547.303
+stadium_km,8538.304
+cafe_avg_price_1500,8449.706
+cafe_count_1500_price_high,8389.92
+cafe_count_500_price_1500,8322.216
+incineration_km,8310.922
+big_church_km,8183.4756
+cafe_count_500_price_2500,7988.7446
+cafe_sum_500_min_price_avg,7902.697
+cafe_count_2000_price_4000,7846.221
+trc_sqm_2000,7425.921
+cafe_count_1000_price_1500,7414.961
+area_m,7395.6797
+sport_count_5000,7304.4624
+cafe_count_500_na_price,7220.7646
+cafe_count_1000_price_1000,7179.9062
+sport_count_2000,7119.8525
+green_part_3000,7078.104
+build_count_1946-1970,6973.509
+railroad_station_avto_min,6963.255
+cafe_count_5000_price_1000,6892.133
+cafe_avg_price_500,6883.2236
+build_count_panel,6862.0327
+museum_km,6786.0454
+church_count_2000,6660.849
+trc_count_5000,6648.535
+material_1.0,6614.443
+cafe_count_500,6475.6387
+office_sqm_1500,6323.8506
+cafe_sum_500_max_price_avg,6111.6694
+ekder_all,6095.2905
+market_count_5000,6089.5835
+trc_sqm_5000,6028.9946
+cafe_count_1000_price_high,5945.4688
+church_count_3000,5928.2
+cafe_count_1000_price_4000,5688.9497
+school_quota,5684.163
+culture_objects_top_25_raion,5655.4805
+preschool_quota,5581.3916
+office_count_1000,5537.7886
+office_sqm_3000,5462.206
+build_count_block,5432.436
+office_sqm_500,5361.5806
+trc_sqm_500,5346.128
+office_sqm_1000,5296.208
+trc_sqm_1000,5295.6553
+office_sqm_2000,5264.0674
+cafe_count_1000_price_500,5200.2876
+office_count_2000,5178.438
+raion_build_count_with_material_info,5174.544
+cafe_count_5000_price_500,5067.0625
+church_count_1500,4939.127
+cafe_sum_3000_min_price_avg,4840.6235
+cafe_count_2000_na_price,4819.9863
+leisure_count_3000,4804.1025
+full_all,4692.4893
+preschool_education_centers_raion,4683.885
+cafe_count_1500_price_4000,4568.62
+16_29_male,4521.503
+cafe_sum_2000_max_price_avg,4512.328
+children_school,4466.7163
+raion_popul,4249.931
+build_count_1921-1945,4234.271
+healthcare_centers_raion,4072.022
+16_29_all,4053.186
+cafe_count_3000_na_price,3995.4375
+big_church_count_5000,3987.558
+cafe_count_1000_na_price,3855.0164
+trc_count_1000,3754.3203
+sport_count_1500,3728.629
+work_all,3405.4778
+male_f,3390.416
+build_count_after_1995,3371.5051
+big_church_count_1500,3315.8398
+cafe_count_1500_na_price,3296.3296
+cafe_avg_price_3000,3275.986
+cafe_sum_1000_max_price_avg,3192.4312
+build_count_brick,3146.2432
+children_preschool,3144.9968
+material_5.0,3096.8926
+market_count_1500,3000.6636
+cafe_avg_price_1000,2992.3242
+office_count_1500,2956.5417
+sport_count_1000,2924.5493
+cafe_avg_price_2000,2900.5247
+school_education_centers_top_20_raion,2894.6296
+work_male,2841.7124
+work_female,2799.596
+cafe_sum_1000_min_price_avg,2789.3618
+sub_area_Teplyj Stan,2781.9426
+big_church_count_2000,2777.7366
+cafe_sum_3000_max_price_avg,2774.3862
+sport_count_500,2736.5757
+build_count_1971-1995,2724.8313
+railroad_1line_no,2710.3599
+office_raion,2676.7432
+leisure_count_5000,2623.48
+leisure_count_1500,2608.879
+cafe_count_500_price_500,2446.2622
+cafe_count_500_price_1000,2232.0022
+market_count_3000,2055.624
+leisure_count_1000,2025.7151
+ekder_female,2006.1002
+additional_education_raion,1966.1301
+16_29_female,1902.4954
+culture_objects_top_25_no,1896.5775
+railroad_station_walk_min,1885.7256
+church_count_1000,1864.7572
+7_14_female,1853.0193
+female_f,1837.7468
+big_church_count_1000,1750.5667
+sub_area_Krylatskoe,1697.4554
+7_14_all,1662.5797
+sub_area_Hamovniki,1507.6666
+build_count_before_1920,1466.9554
+build_count_frame,1464.2528
+build_count_wood,1453.8955
+mosque_count_5000,1448.2097
+cafe_count_3000_price_high,1420.4796
+leisure_count_2000,1415.6364
+build_count_slag,1411.5323
+big_church_count_500,1408.199
+leisure_count_500,1378.8396
+raion_build_count_with_builddate_info,1363.4523
+office_count_500,1277.1199
+market_count_2000,1211.9674
+sub_area_Akademicheskoe,1166.4858
+market_count_500,1158.1859
+market_count_1000,1153.3972
+sub_area_Nagatinskij Zaton,1149.417
+trc_count_500,1129.3352
+sub_area_Marfino,1095.4666
+young_female,1011.0016
+big_road1_1line_yes,986.0807
+build_count_foam,923.2505
+cafe_count_500_price_4000,905.6129
+sub_area_Jakimanka,893.3
+big_road1_1line_no,844.7137
+young_male,763.02295
+cafe_count_2000_price_high,679.39764
+sub_area_Juzhnoe Medvedkovo,675.3357
+church_count_500,657.0451
+0_6_female,622.43005
+ecology_poor,609.60126
+sub_area_Prospekt Vernadskogo,604.90295
+sub_area_Dorogomilovo,603.34216
+sub_area_Kuncevo,565.3355
+sub_area_Kurkino,558.65515
+sub_area_Horoshevskoe,548.00574
+sub_area_Nagornoe,512.99646
+0_17_male,499.14502
+sub_area_Obruchevskoe,493.18124
+sub_area_Cheremushki,491.22113
+detention_facility_raion_no,474.695
+young_all,470.7469
+sub_area_Alekseevskoe,461.49625
+sub_area_Zjuzino,444.29034
+railroad_terminal_raion_no,441.567
+university_top_20_raion,438.62543
+thermal_power_plant_raion_no,432.44897
+7_14_male,425.7458
+sub_area_Babushkinskoe,421.09985
+culture_objects_top_25_yes,410.85107
+sub_area_Presnenskoe,383.4925
+0_6_male,370.88675
+ecology_excellent,353.1848
+sub_area_Poselenie Vnukovskoe,335.26266
+0_6_all,305.44293
+sub_area_Ajeroport,279.75064
+sub_area_Mozhajskoe,245.7266
+ecology_satisfactory,245.44571
+railroad_1line_yes,222.12366
+0_17_all,221.69897
+0_13_female,218.18173
+sub_area_Severnoe Tushino,213.13345
+nuclear_reactor_raion_no,211.54837
+sub_area_Lefortovo,205.69052
+sub_area_Staroe Krjukovo,204.37659
+mosque_count_2000,204.13654
+0_13_male,200.5169
+railroad_terminal_raion_yes,187.89134
+sub_area_Levoberezhnoe,169.53683
+material_6.0,166.65674
+mosque_count_1000,162.14314
+radiation_raion_yes,160.16779
+sub_area_Kon'kovo,155.71278
+water_1line_no,154.63933
+ecology_good,154.40501
+sub_area_Sokol,153.95573
+sub_area_Horoshevo-Mnevniki,153.2959
+cafe_count_500_price_high,149.73447
+sub_area_Chertanovo Central'noe,144.10579
+sub_area_Ochakovo-Matveevskoe,143.3638
+detention_facility_raion_yes,138.30208
+sub_area_Gagarinskoe,137.59904
+sub_area_Basmannoe,125.909
+sub_area_Juzhnoe Tushino,123.76009
+sub_area_Fili Davydkovo,121.36409
+0_17_female,119.35702
+sub_area_Timirjazevskoe,117.30171
+sub_area_Taganskoe,112.28154
+sub_area_Lomonosovskoe,107.274765
+sub_area_Bibirevo,105.0308
+sub_area_Zamoskvorech'e,102.912796
+sub_area_Strogino,101.90758
+sub_area_Sokolinaja Gora,98.455215
+mosque_count_500,93.277176
+sub_area_Butyrskoe,92.54195
+sub_area_Chertanovo Severnoe,91.803856
+thermal_power_plant_raion_yes,91.72301
+sub_area_Beskudnikovskoe,86.86467
+big_market_raion_no,81.63351
+sub_area_Ramenki,79.66725
+sub_area_Mar'ina Roshha,75.97339
+sub_area_Hovrino,69.73026
+big_market_raion_yes,68.52287
+sub_area_Donskoe,66.045296
+sub_area_Ostankinskoe,63.65034
+sub_area_Shhukino,57.77961
+sub_area_Izmajlovo,54.19585
+sub_area_Juzhnoportovoe,52.564034
+sub_area_Nagatino-Sadovniki,52.24513
+sub_area_Golovinskoe,52.0548
+water_1line_yes,49.48598
+0_13_all,48.83684
+sub_area_Preobrazhenskoe,47.015602
+sub_area_Koptevo,45.595642
+sub_area_Troparevo-Nikulino,43.992165
+sub_area_Gol'janovo,43.75592
+sub_area_Danilovskoe,43.449104
+build_count_mix,41.56128
+sub_area_Filevskij Park,39.727943
+sub_area_Severnoe Medvedkovo,31.37193
+sub_area_Severnoe Izmajlovo,30.601923
+sub_area_Kotlovka,29.256094
+sub_area_Pechatniki,28.436771
+sub_area_Savelovskoe,26.420547
+sub_area_Rostokino,26.33141
+sub_area_Poselenie Rogovskoe,25.73321
+sub_area_Severnoe Butovo,22.391415
+sub_area_Novokosino,22.367184
+sub_area_Jasenevo,20.927036
+sub_area_Savelki,19.938452
+sub_area_Brateevo,19.082037
+sub_area_Vojkovskoe,15.394072
+sub_area_Veshnjaki,15.379245
+sub_area_Altuf'evskoe,14.012812
+sub_area_Zapadnoe Degunino,13.497511
+sub_area_Moskvorech'e-Saburovo,13.294302
+mosque_count_3000,12.081114
+mosque_count_1500,11.917232
+sub_area_Vostochnoe Degunino,11.721191
+sub_area_Losinoostrovskoe,11.521432
+sub_area_Novo-Peredelkino,11.507916
+sub_area_Sviblovo,11.445338
+sub_area_Lianozovo,10.679144
+sub_area_Pokrovskoe Streshnevo,9.873451
+radiation_raion_no,9.720235
+sub_area_Poselenie Moskovskij,9.533002
+sub_area_Dmitrovskoe,5.791888
+sub_area_Ivanovskoe,4.8110967
+sub_area_Rjazanskij,1.9492662
+sub_area_Poselenie Shhapovskoe,1.3984525
+sub_area_Poselenie Sosenskoe,1.2199204
+sub_area_Poselenie Pervomajskoe,0.7764324
+oil_chemistry_raion_yes,0.0
+nuclear_reactor_raion_yes,0.0
+sub_area_Tverskoe,0.0
+material_3.0,0.0
+sub_area_Troickij okrug,0.0
+sub_area_Vyhino-Zhulebino,0.0
+sub_area_Vnukovo,0.0
+oil_chemistry_raion_no,0.0
+incineration_raion_yes,0.0
+incineration_raion_no,0.0
+ecology_no data,0.0
+sub_area_Zjablikovo,0.0
+sub_area_Vostochnoe,0.0
+sub_area_Vostochnoe Izmajlovo,0.0
+sub_area_Poselenie Shherbinka,0.0
+sub_area_Arbat,0.0
+sub_area_Bogorodskoe,0.0
+sub_area_Nizhegorodskoe,0.0
+sub_area_Nekrasovka,0.0
+sub_area_Birjulevo Vostochnoe,0.0
+sub_area_Birjulevo Zapadnoe,0.0
+sub_area_Molzhaninovskoe,0.0
+sub_area_Mitino,0.0
+sub_area_Metrogorodok,0.0
+sub_area_Meshhanskoe,0.0
+sub_area_Matushkino,0.0
+sub_area_Mar'ino,0.0
+sub_area_Tekstil'shhiki,0.0
+sub_area_Ljublino,0.0
+sub_area_Kuz'minki,0.0
+sub_area_Caricyno,0.0
+sub_area_Krjukovo,0.0
+sub_area_Kosino-Uhtomskoe,0.0
+sub_area_Kapotnja,0.0
+sub_area_Chertanovo Juzhnoe,0.0
+sub_area_Juzhnoe Butovo,0.0
+sub_area_Jaroslavskoe,0.0
+sub_area_Novogireevo,0.0
+sub_area_Orehovo-Borisovo Juzhnoe,0.0
+sub_area_Orehovo-Borisovo Severnoe,0.0
+sub_area_Otradnoe,0.0
+sub_area_Solncevo,0.0
+sub_area_Sokol'niki,0.0
+sub_area_Silino,0.0
+sub_area_Severnoe,0.0
+sub_area_Begovoe,0.0
+sub_area_Poselenie Voskresenskoe,0.0
+sub_area_Poselenie Voronovskoe,0.0
+sub_area_Poselenie Rjazanovskoe,0.0
+sub_area_Poselenie Novofedorovskoe,0.0
+sub_area_Poselenie Mosrentgen,0.0
+sub_area_Poselenie Mihajlovo-Jarcevskoe,0.0
+sub_area_Poselenie Marushkinskoe,0.0
+sub_area_Poselenie Krasnopahorskoe,0.0
+sub_area_Poselenie Kokoshkino,0.0
+sub_area_Poselenie Klenovskoe,0.0
+sub_area_Poselenie Kievskij,0.0
+sub_area_Poselenie Filimonkovskoe,0.0
+sub_area_Poselenie Desjonovskoe,0.0
+sub_area_Perovo,0.0
+sub_area_Krasnosel'skoe,0.0
