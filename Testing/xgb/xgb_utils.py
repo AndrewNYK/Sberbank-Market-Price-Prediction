@@ -106,7 +106,7 @@ one_hot_cols = [
 
 useless_cols = [
     "id",
-    # 'timestamp',
+    'timestamp',
     # 'floor',
     # 'material',
     # 'max_floor',
@@ -450,6 +450,12 @@ def replace_nan_with_mean(**kwargs):
 
     return df
 
+def update_price_doc(**kwargs):
+    df = kwargs['df']
+    df['price_doc'] = df['price_doc'] * .969 + 10
+
+    return df
+
 
 def cat_encode():
     pass
@@ -462,9 +468,10 @@ def process_train(
     df = train_df.drop(train_df[train_df["build_year"] > 2019].index)
 
     pipeline = [
-        process_timestamp,
+        # process_timestamp,
         convert_to_cat_and_drop_useless_cols,
         replace_nan_with_mean,
+        update_price_doc,
     ]
     for f in pipeline:
         df = f(df=df)
@@ -476,33 +483,14 @@ def process_train(
 
     _one_hot_transform(df, one_hot_encoder)
 
-    # Ordinal
-    # if ordinal_encoder is None:
-    #     ordinal_encoder = OrdinalEncoder(
-    #         handle_unknown="use_encoded_value", unknown_value=np.nan
-    #     )
-    #     ordinal_encoder.fit(df[ordinal_cols])
-
-    # df[ordinal_cols] = ordinal_encoder.transform(df[ordinal_cols])
-
-    # Drop NAs
-    # df.dropna(inplace=True)
-    # df = df.apply(lambda x: x.fillna(x.value_counts().index[0]))
-
     y = df["price_doc"]
     X = df.drop(["price_doc"], axis=1)
 
-    # Target
-    # te_encoder = TargetEncoder(cols=target_encoding_cols, min_samples_leaf=5, smoothing=8)
-    # te_encoder.fit(X, y)
-
-    # X['sub_area_te'] = te_encoder.transform(X)['sub_area']
-    # X.drop(['sub_area'], axis=1, inplace=True)
 
     df_new = pd.concat([X, y], axis=1)
 
-    print("*" * 100, "\n", df_new.shape)
-    df_new[["year", "build_year"]] = df_new[["year", "build_year"]].astype("int64")
+    # df_new[["year", "build_year"]] = df_new[["year", "build_year"]].astype("int64")
+    df_new[["build_year"]] = df_new[["build_year"]].astype("int64")
 
     # Handle Na
     # df_new.dropna(inplace=True)
@@ -523,7 +511,7 @@ def process_test(
 ):
     df = df_.copy()
     pipeline = [
-        process_timestamp,
+        # process_timestamp,
         convert_to_cat_and_drop_useless_cols,
         replace_nan_with_mean,
     ]
