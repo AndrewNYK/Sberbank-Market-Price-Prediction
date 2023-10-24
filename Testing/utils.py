@@ -73,6 +73,49 @@ ordinal_cols = [
 'state',
 ]
 
+top_40_cols = [
+    'full_sq',
+    'sub_area_te',
+    'state',
+    'num_room',
+    'year',
+    'floor',
+    'build_year',
+    'max_floor',
+    'cafe_count_5000_price_2500',
+    'kitch_sq',
+    'life_sq',
+    'cafe_count_2000',
+    'sport_count_3000',
+    'ttk_km',
+    'public_healthcare_km',
+    'cafe_count_3000',
+    'product_type_Investment',
+    'cafe_count_5000_price_high',
+    'cafe_count_3000_price_2500',
+    'office_sqm_5000',
+    'green_zone_km',
+    'zd_vokzaly_avto_km',
+    'cafe_count_3000_price_1500',
+    'detention_facility_km',
+    'railroad_km',
+    'industrial_km',
+    'additional_education_km',
+    'metro_min_avto',
+    'metro_min_walk',
+    'month',
+    'metro_km_avto',
+    'swim_pool_km',
+    'kindergarten_km',
+    'thermal_power_plant_km',
+    'workplaces_km',
+    'preschool_km',
+    'public_transport_station_km',
+    'power_transmission_line_km',
+    'cafe_count_2000_price_1000',
+    'cafe_count_5000_na_price'
+]
+
 
 
 useless_cols = [
@@ -440,6 +483,8 @@ def cat_encode(df_, target_encoder, ordinal_encoder):
     df['sub_area_te'] = target_encoder.transform(df)['sub_area']
 
     df.drop(['sub_area'], axis=1, inplace=True)
+    columns_to_drop = [col for col in df.columns if col not in top_40_cols]
+    df.drop(columns=columns_to_drop, axis=1, inplace=True)
 
     return df    
 
@@ -461,6 +506,10 @@ def process_train(train_df):
     # df.dropna(inplace=True)
     df = df.apply(lambda x: x.fillna(x.value_counts().index[0]))
 
+    # drop rows where life_sq and kitch_sq higher than full_sq
+    df = df.drop(df[(df['full_sq'] <= df['life_sq'])].index)
+    df = df.drop(df[(df['full_sq'] <= df['kitch_sq'])].index)
+    
     # Target
     y = df['price_doc']
     X = df.drop(['price_doc'], axis=1)
@@ -470,17 +519,21 @@ def process_train(train_df):
 
     X['sub_area_te'] = te_encoder.transform(X)['sub_area']
     X.drop(['sub_area'], axis=1, inplace=True)
+    columns_to_drop = [col for col in X.columns if col not in top_40_cols]
+    X = X.drop(columns=columns_to_drop)
+
 
     df_new = pd.concat([X, y], axis=1)
     # Handle Na build_years
     # df_new.dropna(inplace=True)
     df_new[['year', 'build_year']] = df_new[['year', 'build_year']].astype('int64')
 
+
     return df_new, oe, te_encoder
 
 def process(df_, te, oe):
     df = df_.copy()
-    df = preprocess_1(df_)
+    df = preprocess_1(df)
 
     
     # Encode categories
