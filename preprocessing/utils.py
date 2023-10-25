@@ -93,9 +93,10 @@ def preprocess_train(df):
 
     # Calculate the average 'kitch_sq/life_sq' for each 'sub_area'
     sub_area_avg = df.groupby('sub_area')['kitch_sq_per_life_sq'].mean()
+    print(sub_area_avg.keys())
 
     # Apply the function to fill NaN values in 'kitch_sq'
-    df['kitch_sq'] = df.apply(fill_kitch_sq, args=(sub_area_avg) ,axis=1)
+    df['kitch_sq'] = df.apply(fill_kitch_sq, sub_area_avg=sub_area_avg ,axis=1)
 
     # Drop the 'kitch_sq_per_life_sq' column if you no longer need it
     df.drop(columns='kitch_sq_per_life_sq', inplace=True)
@@ -123,6 +124,68 @@ def preprocess_train(df):
 
     return df_no_outliers
 
+
+def preprocess_test(df):
+    # For life_sq, I think it is acceptable that we replace NaN values with the full_sq values of those rows
+    df['life_sq'].fillna(df['full_sq'], inplace=True)
+
+    # for max_floor, we could fill NaN with the median max_floor of properties in the same sub_area
+    sub_area_medians = df.groupby('sub_area')['max_floor'].median().reset_index()
+    # sub_area_medians['max_floor'] = np.ceil(sub_area_medians['max_floor'])
+    df = df.merge(sub_area_medians, on='sub_area', suffixes=('', '_median'), how='left')
+    df['max_floor'].fillna(df['max_floor_median'], inplace=True)
+    df.drop(columns='max_floor_median', inplace=True)
+
+    # and then for floor, we just fill NaN with the max_floor
+    df['floor'].fillna(df['max_floor'], inplace=True)
+
+    # finally we replace the max_floor with the floor, if there are any value of floor greater than max_floor(e.g row 63)
+    df['max_floor'] = df.apply(lambda row: row['floor'] if row['floor'] > row['max_floor'] else row['max_floor'], axis=1)
+
+    # we do the same for build_year, fill NaN with the median build_year of properties in the same sub_area
+    sub_area_medians = df.groupby('sub_area')['build_year'].median().reset_index()
+    # sub_area_medians['build_year'] = np.ceil(sub_area_medians['build_year'])
+    df = df.merge(sub_area_medians, on='sub_area', suffixes=('', '_median'), how='left')
+    df['build_year'].fillna(df['build_year_median'], inplace=True)
+    df.drop(columns='build_year_median', inplace=True)
+
+    # for num_room, we shall split the data into different ranges of full_sq value and calculate the average num_room for each range
+    # then, we replace the num_room NaN values depending on which range the row's full_sq belongs to
+    # Define the ranges for 'full_sq' bins
+    bins = [0, 30, 52, 80, float('inf')]  # these values are eyeballed
+    print(bins)
+
+    # Use pd.cut to create bins for 'full_sq'
+    df['full_sq_bins'] = pd.cut(df['full_sq'], bins=bins)
+
+    # Calculate the average 'num_room' for each 'full_sq' range
+    # num_room_averages = df.groupby('full_sq_bins')['num_room'].transform('mean')
+    num_room_averages = df.groupby('full_sq_bins')['num_room'].transform(lambda x: np.ceil(x.mean()))
+    df['num_room'].fillna(num_room_averages, inplace=True)
+    df.drop(columns='full_sq_bins', inplace=True)
+
+    # for kitch_sq, we shall group by sub_area and calculate the average kitch_sq/life_sq proportion, then replace NaN values with the proporiton multiplied by life_sq
+    # Calculate the 'kitch_sq/life_sq' for each row
+    df['kitch_sq_per_life_sq'] = df['kitch_sq'] / df['life_sq']
+
+    # Calculate the average 'kitch_sq/life_sq' for each 'sub_area'
+    sub_area_avg = df.groupby('sub_area')['kitch_sq_per_life_sq'].mean()
+
+    # Apply the function to fill NaN values in 'kitch_sq'
+    df['kitch_sq'] = df.apply(fill_kitch_sq, sub_area_avg=sub_area_avg, axis=1)
+
+    # Drop the 'kitch_sq_per_life_sq' column if you no longer need it
+    df.drop(columns='kitch_sq_per_life_sq', inplace=True)
+
+    # we do the same for state, fill NaN with the median state of properties in the same sub_area
+    sub_area_medians = df.groupby('sub_area')['state'].median().reset_index()
+    # sub_area_medians['build_year'] = np.ceil(sub_area_medians['build_year'])
+    df = df.merge(sub_area_medians, on='sub_area', suffixes=('', '_median'), how='left')
+    df['state'].fillna(df['state_median'], inplace=True)
+    df.drop(columns='state_median', inplace=True)
+
+    return df
+
 # Define a function to remove rows with outliers based on the IQR
 def remove_outliers_iqr(df):
     Q1 = df.quantile(0.25)
@@ -137,6 +200,6 @@ def fill_kitch_sq(row, sub_area_avg):
     sub_area = row['sub_area']
     if pd.notna(row['kitch_sq']):
         return row['kitch_sq']
-    if sub_area in sub_area_avg:
+    if sub_area in sub_area_avg.keys():
         return np.ceil(row['life_sq'] * sub_area_avg[sub_area])
     return row['kitch_sq']
