@@ -45,12 +45,14 @@ top_40_cols = [
     'cafe_count_5000_na_price'
 ]
 
-categorical_cols = ['floor', 'max_floor', 'state', 'product_type', 'sub_area', 'num_room', 'year', 'month']
+# categorical_cols = ['floor', 'max_floor', 'state', 'product_type', 'sub_area', 'num_room', 'year', 'month']
+categorical_cols = ['product_type', 'sub_area']
 
 def preprocess_train(df):
     # drop rows where life_sq and kitch_sq higher than full_sq
-    df = df.drop(df[(df['full_sq'] <= df['life_sq'])].index)
-    df = df.drop(df[(df['full_sq'] <= df['kitch_sq'])].index)
+    # df = df.drop(df[(df['full_sq'] <= df['life_sq'])].index)
+    # df = df.drop(df[(df['full_sq'] <= df['kitch_sq'])].index)
+    df = df.drop(df[(df['build_year'] > 2019)].index)
 
     # for max_floor, we could fill NaN with the median max_floor of properties in the same sub_area
     sub_area_medians = df.groupby('sub_area')['max_floor'].median().reset_index()
@@ -108,21 +110,21 @@ def preprocess_train(df):
     df['state'].fillna(df['state_median'], inplace=True)
     df.drop(columns='state_median', inplace=True)
 
-    df_drop_categorical = df.drop(columns=categorical_cols, axis=1)
+    # df_drop_categorical = df.drop(columns=categorical_cols, axis=1)
     # Remove rows with outliers
-    df_no_outliers = remove_outliers_iqr(df_drop_categorical)
+    # df_no_outliers = remove_outliers_iqr(df_drop_categorical)
     # scaler = StandardScaler()
     # df_no_outliers_scaled = scaler.fit_transform(df_no_outliers)
 
-    for c in categorical_cols:
-        df_no_outliers[c] = df[c]
+    # for c in categorical_cols:
+    #     df_no_outliers[c] = df[c]
 
     for c in categorical_cols:
-        df_no_outliers[c] = df_no_outliers[c].astype('category')
+        df[c] = df[c].astype('category')
 
-    df_no_outliers['price_doc'] = df["price_doc"] * .969 + 10
+    df['price_doc'] = df["price_doc"] * .969 + 10
 
-    return df_no_outliers
+    return df
 
 
 def preprocess_test(df):
@@ -201,5 +203,7 @@ def fill_kitch_sq(row, sub_area_avg):
     if pd.notna(row['kitch_sq']):
         return row['kitch_sq']
     if sub_area in sub_area_avg.keys():
+        if(sub_area_avg[sub_area] == np.inf):
+            return 0
         return np.ceil(row['life_sq'] * sub_area_avg[sub_area])
-    return row['kitch_sq']
+    return 0
