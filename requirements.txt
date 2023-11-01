@@ -8,3 +8,4 @@ lightgbm
 hyperopt
 xgboost
 category-encoders
+optuna
