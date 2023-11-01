@@ -416,7 +416,7 @@ def process_timestamp(**kwargs):
     df["year"] = df["timestamp"].dt.year
     df["month"] = df["timestamp"].dt.month
 
-    df.drop(["timestamp"], axis=1, inplace=True)
+    # df.drop(["timestamp"], axis=1, inplace=True)
 
     return df
 
@@ -425,11 +425,10 @@ def convert_to_cat_and_drop_useless_cols(**kwargs):
     df = kwargs["df"]
     for c in categorical_cols:
         df[c] = df[c].astype("category")
-
+    
     df.drop(useless_cols, axis=1, inplace=True)
 
     return df
-
 
 def replace_nan_with_mean(**kwargs):
     df = kwargs["df"]
@@ -453,6 +452,26 @@ def replace_nan_with_mean(**kwargs):
 def update_price_doc(**kwargs):
     df = kwargs['df']
     df['price_doc'] = df['price_doc'] * .969 + 10
+    # Investment
+    # df['price_doc'] = df['price_doc'] * 1.05
+    # Owner Occupier
+    # df['price_doc'] = df['price_doc'] * .9
+
+    return df
+
+def update_price_doc_with_price_index(**kwargs):
+    # df = process_timestamp(**kwargs)
+    df = kwargs['df']
+    price_indexes = pd.read_csv('price_index.csv', index_col=0)
+    price_indexes_dic = price_indexes.to_dict()
+    for year, vals in price_indexes_dic.items():
+        for sub_area, price_index in vals.items():
+            df.loc[(df['sub_area'] == sub_area) & (df['year'] == int(year)), 'price_index'] = price_index
+    
+    df['price_doc'] = df['price_doc'] * df['price_index']
+
+    # Remove columns
+    df.drop(["month","year","price_index"], axis=1, inplace=True)
 
     return df
 
@@ -471,7 +490,6 @@ def process_train(
         # process_timestamp,
         convert_to_cat_and_drop_useless_cols,
         replace_nan_with_mean,
-        update_price_doc,
     ]
     for f in pipeline:
         df = f(df=df)
@@ -544,9 +562,10 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error
 import shap
 
-
-def cal_mean_errors(train_df, models, features=None):
-    cv = KFold(n_splits=5, shuffle=True)
+# Inv Seed = 100
+# Own Seed = 42
+def cal_mean_errors(train_df, models, features=None, seed=42):
+    cv = KFold(n_splits=5, shuffle=True, random_state=seed)
     rmsles = []
     most_important_features = []
 
@@ -591,7 +610,7 @@ def cal_mean_errors(train_df, models, features=None):
 
         for model in models:
             evaluation = [(X_test, y_test)]
-            model.fit(X_train, y_train, eval_set=evaluation, verbose=False)
+            model.fit(X_train, y_train, eval_set=evaluation)
             pred = model.predict(X_test)
             rmsles_.append(mean_squared_error(y_test, pred, squared=False))
             explainer = shap.TreeExplainer(model)
