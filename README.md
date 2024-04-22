@@ -1,4 +1,4 @@
-# [CZ4041-Sterbank-Market prediction](https://www.kaggle.com/competitions/sberbank-russian-housing-market/overview)
+# [CZ4041-Sberbank-Market prediction](https://www.kaggle.com/competitions/sberbank-russian-housing-market/overview)
 Can you predict realty price fluctuations in Russia’s volatile economy?
 
 ## Description
